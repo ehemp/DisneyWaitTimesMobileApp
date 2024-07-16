@@ -1,0 +1,30 @@
+{lands.map((land, index) => (
+        <View key={index} style={styles.rideContainer}>
+          <Text>{land.name}</Text>
+          <Text>{rideNames.map((name) => name.name)}</Text>
+          <Text>{rideNames[index++].name} minutes</Text>
+        </View>
+        ))}
+
+<Text style={styles.landsHeader}>{landNames}</Text>
+
+      /*const username = 'ehempfling@gmail.com';
+        const password = 'GnGY3KyE!47gLQ';
+        const token = base64.encode(`${username}:${password}`);*/
+
+        const username = 'ehempfling@gmail.com';
+        const password = 'GnGY3KyE!47gLQ';
+        const token = base64.encode(`${username}:${password}`);
+        const response = await axios.get('https://queue-times.com/en-US/parks/5/queue_times.json', {
+          headers: {
+            Authorization: `Basic ${token}`,
+          },
+        });
+
+        <Text>{rideNames.map((name) => name.name + "\nWait time: " + name.wait_time + " minutes.\n")}</Text>
+
+        {rideNames.map((ride, index) => (
+                                        <View key={index} style={styles.rideContainer}>
+                                            <Text>{ride.name + "\nWait time: " + ride.wait_time + " minutes.\n"}</Text>
+                                            </View>
+                                            ))}
