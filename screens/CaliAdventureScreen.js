@@ -1,4 +1,4 @@
-
+// HomeScreen.js
 
 import React, { useState, useEffect } from 'react';
 import { View, Text, Button, StyleSheet, Image, ActivityIndicator, SafeAreaView, ScrollView, TouchableOpacity } from 'react-native';
@@ -9,7 +9,8 @@ import useWaitTimes from '../hooks/WaitTimesHook';
 import styles from '../styles/ParkScreenStyles';
 
 
-const EpcotScreen = ({ navigation, route }) => {
+
+const CaliAdventureScreen = ({ navigation, route }) => {
     const screenName = route.params.park;
     const resort = route.params.destination;
     const { isLoading, lands, initialCollapsedState } = useWaitTimes(screenName, resort);
@@ -144,7 +145,4 @@ const EpcotScreen = ({ navigation, route }) => {
             </SafeAreaView>
             );
           };
-
-
-
-export default EpcotScreen;
+export default CaliAdventureScreen;

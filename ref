@@ -28,3 +28,25 @@
                                             <Text>{ride.name + "\nWait time: " + ride.wait_time + " minutes.\n"}</Text>
                                             </View>
                                             ))}
+
+step 1 brew install cocoapods step 2 sudo arch -x86_64 gem install ffi step 3 arch -x86_64 pod install
+
+Android Release: 1. cd android 2. ./gradlew assembleRelease
+
+
+
+<Drawer.Navigator
+               drawerType="front"
+               initialRouteName="About"
+               drawerContentOptions={{
+                 activeTintColor: '#e91e63',
+                 itemStyle: { marginVertical: 10 },
+               }}>
+               <Drawer.Screen name="About" component={AboutScreen} />
+               <Drawer.Screen name="Settings" component={SettingsScreen} />
+               {
+                 MenuItems.map(drawer=><Drawer.Screen
+                   key={drawer.name}
+                 />)
+               }
+        </Drawer.Navigator>
