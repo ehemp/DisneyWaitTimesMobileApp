@@ -8,8 +8,9 @@ const DetailsCard = () => {
   //console.log("DetailsCard ", attraction.name)
   const inlineText = { flexDirection: 'row', }
   const portalStyle = { flex: 1, }
-  const containerStyle = { backgroundColor: '#fff5f5', justifyContent: 'center', width: '100%', height: '60%', alignItems: 'center', borderWidth: 2, borderRadius: 10, padding: 10,};
-  const textDetails = { fontSize: 20,  fontFamily: 'Quicksand-Medium', textAlign: 'center', color: '#334155',}
+  const modalContainerStyle = { backgroundColor: '#0e1428', justifyContent: 'center', width: '100%', height: '60%', alignItems: 'center', borderWidth: 2, borderRadius: 10, padding: 10, };
+  const containerStyle = { backgroundColor: 'transparent', justifyContent: 'center', alignItems: 'center', padding: 10, };
+  const textDetails = { fontSize: 20,  fontFamily: 'Quicksand-Medium', textAlign: 'center', color: '#f6f1ea',}
   const styleGo = { color: '#047857', }
   const styleStop = { color: '#b91c1c', }
   const newLine = "\n";
@@ -47,12 +48,14 @@ const DetailsCard = () => {
     <PaperProvider>
 
       <Portal style={portalStyle}>
-        <Modal  contentContainerStyle={containerStyle} visible={visible} onDismiss={hideModal} >
+        <Modal  contentContainerStyle={modalContainerStyle} visible={visible} onDismiss={hideModal} >
         <SafeAreaView>
-        <View>
+        <ScrollView>
+        <View style={containerStyle}>
           <Text style={textDetails}>{attraction?.name}: </Text><Text style={[textDetails, attraction?.status === "OPERATING" ? styleGo : styleStop]}>{attraction?.status === "OPERATING" ? "Open" : attraction.status === "DOWN" ? "Down" : attraction.status === "CLOSED" ? "Closed" : "Refurbishment"}</Text>
           <Text style={textDetails}>Forecast:{newLine}{mapForecast(attraction)}</Text>
         </View>
+        </ScrollView>
         </SafeAreaView>
         </Modal>
       </Portal>

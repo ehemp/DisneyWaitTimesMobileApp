@@ -50,3 +50,8 @@ Android Release: 1. cd android 2. ./gradlew assembleRelease
                  />)
                }
         </Drawer.Navigator>
+
+
+        //['react-native-reanimated/plugin', { loose: true }], had to add this to babel.config.js - plugins
+
+        //Radio button for list or tab view of parks

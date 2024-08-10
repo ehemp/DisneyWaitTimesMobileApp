@@ -13,15 +13,21 @@ import parkIDs from '../component/ParkIDs'
 
 
 
+
+
       const parkID2 = () => {
 
         let id = ""
         for (let i = 0; i < parkIDs[resort].parks.length; i++) {
 
-            parkIDs[resort].parks[i][screenName] ? id = parkIDs[resort].parks[i][screenName].id : "Did not find id."
+            parkIDs[resort].parks[i][screenName] ? id = parkIDs[resort].parks[i][screenName].id : console.log("Searching...")
 
         }
-        return id;
+        if (id) {
+            console.log("Id found.")
+            return id;
+        }
+        console.log("Did not find id.")
       }
 
           useEffect(() => {
@@ -31,7 +37,7 @@ import parkIDs from '../component/ParkIDs'
 
                 let attractionArray = [];
                 for (let i = 0; i < resPark.data.liveData.length; i++) {
-                    //console.log(resPark.data.liveData[i].parkId === parkID2() && resPark.data.liveData[i].entityType === "ATTRACTION" && resPark.data.liveData[i].queue.STANDBY ? resPark.data.liveData[i].queue.STANDBY : "Error could not locate name")
+
 
                     if (resPark.data.liveData[i].parkId === parkID2() && resPark.data.liveData[i].entityType === "ATTRACTION" && resPark.data.liveData[i].queue) {
                         attractionArray.push(resPark.data.liveData[i]);
@@ -53,7 +59,7 @@ import parkIDs from '../component/ParkIDs'
 
             fetchWaitTimes();
           }, [screenName]);
-          //console.log("HOOK_V2 ", attractions)
+
           return { isLoading, attractions, initialCollapsedState };
         };
 

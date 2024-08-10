@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 5,
     marginTop: 0,
-    backgroundColor: '#fff5f5',
+    backgroundColor: '#f6f1ea',
   },
   scrollView: {
 
@@ -21,21 +21,23 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   landsHeader: {
-    marginTop: 1,
+    marginTop: 0,
     fontSize: 24,
     color: '#0f172a',
     alignItems: 'center',
-    textAlign: 'center',
+    textAlign: 'left',
     justifyContent: 'center',
     fontFamily: 'Raleway-Bold',
+    padding: 15,
   },
   rideLabel: {
-    marginBottom: 5,
+    marginBottom: 0,
     fontSize: 22,
     color: '#334155',
     fontFamily: 'Quicksand-Medium',
-    padding: 5,
+    padding: 0,
     textAlign: 'center',
+
   },
   rideDetails: {
     paddingLeft: 0,
@@ -65,6 +67,7 @@ const styles = StyleSheet.create({
   inlineContainer: {
       flexDirection: 'row',
       justifyContent: 'center',
+      padding: 0,
     },
   header: {
     justifyContent: 'center',
@@ -117,18 +120,20 @@ const styles = StyleSheet.create({
 
   },
   rideLabelsContainer: {
-      marginBottom: 10,
-      margin: 5,
-      borderBottomWidth: 2,
-      borderRightWidth: 2,
-      borderLeftWidth: 2,
-      borderTopWidth: 2,
+      marginBottom: 0,
+      margin: 0,
+      borderWidth: 0,
       borderRadius: 7,
       paddingLeft: 8,
       paddingRight: 8,
-      paddingBottom: 8,
+      paddingBottom: 0,
       paddingTop: 0,
-      textAlign: 'center',
+      textAlign: 'left',
+
+    },
+    rideBackgroundContainer: {
+        backgroundColor: '#e8e2db',
+        padding: 20,
     },
 });
 
