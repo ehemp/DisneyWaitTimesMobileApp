@@ -1,7 +1,7 @@
 import React, { createContext, useState, useContext } from 'react';
 import DetailsCard from '../cards/DetailsCard';
 import FavIcon from 'react-native-vector-icons/MaterialIcons';
-import parkIDs from '../component/ParkIDs'
+import  parkIDs, { parkNames, resortNames, parkIndex } from '../component/ParkIDs'
 
 
 const ModalContext = createContext();
@@ -22,26 +22,23 @@ export const ModalProvider = ({ children }) => {
 
 
   const switchSet = (attr) => {
-    console.log(parkIDs["WDW Resort"].parks[3]["Hollywood Studios"].id)
     switch (attr.parkId) {
-        case parkIDs["WDW Resort"].parks[0]["Magic Kingdom"].id: { return mkSet };
-        case parkIDs["WDW Resort"].parks[1]["Animal Kingdom"].id: { return akSet };
-        case parkIDs["WDW Resort"].parks[2]["Epcot"].id: { return epcotSet };
-        case parkIDs["WDW Resort"].parks[3]["Hollywood Studios"].id: { return hsSet };
-        case parkIDs["Disneyland Resort"].parks[0]["Disneyland"].id: { return dlSet };
-        case parkIDs["Disneyland Resort"].parks[1]["California Adventure"].id: { return caSet };
+        case parkIDs[resortNames.WDWR].parks[parkIndex(parkNames.mk)][parkNames.mk].id: return mkSet; break;
+        case parkIDs[resortNames.WDWR].parks[parkIndex(parkNames.ak)][parkNames.ak].id: return akSet; break;
+        case parkIDs[resortNames.WDWR].parks[parkIndex(parkNames.ep)][parkNames.ep].id: return epcotSet; break;
+        case parkIDs[resortNames.WDWR].parks[parkIndex(parkNames.hs)][parkNames.hs].id: return hsSet; break;
+        case parkIDs[resortNames.DLR].parks[parkIndex(parkNames.dl)][parkNames.dl].id: return dlSet; break;
+        case parkIDs[resortNames.DLR].parks[parkIndex(parkNames.ca)][parkNames.ca].id: return caSet; break;
+        default: console.log("Could not match id.");
     }
   }
   const favAttr = async (attr, index) => {
     setIndex(index);
-
     if (switchSet(attr).has(attr.id) && switchSet(attr).has(index)) {
         switchSet(attr).delete(attr.id)
         switchSet(attr).delete(index)
         setFavIcon(false)
         console.log("delete", switchSet(attr))
-        //console.log(favSet)
-
     }
     else if (!switchSet(attr).has(attr.id) && !switchSet(attr).has(index)) {
         switchSet(attr).add(attr.id)
@@ -49,7 +46,6 @@ export const ModalProvider = ({ children }) => {
         setFavIcon(true)
         console.log("add", switchSet(attr))
     }
-
 }
 
 

@@ -5,6 +5,7 @@ import { View, Text, Button, Image, StyleSheet, ActivityIndicator, SafeAreaView,
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import axios from 'axios';
+import { parkNames, resortNames } from '../component/ParkIDs';
 import styles from '../styles/LocationsScreen';
 
 
@@ -51,7 +52,7 @@ const CustomButtonHS = ({ title, onPress, imageSource }) => {
 
 
 const FloridaScreen = ({ navigation }) => {
-const resort = "WDW Resort";
+const resort = resortNames.WDWR;
   return (
   <SafeAreaView style={styles.safeView}>
 
@@ -59,23 +60,23 @@ const resort = "WDW Resort";
     <View style={styles.container}>
       <CustomButtonMK
                         title=""
-                        onPress={() => navigation.navigate('ParkScreen', {park: 'Magic Kingdom', destination: resort})}
+                        onPress={() => navigation.navigate('ParkScreen', {park: parkNames.mk, destination: resort})}
                         imageSource={require('../src/icons/mkBanner4.png')}
                       />
 
       <CustomButtonAK
                           title=""
-                          onPress={() => navigation.navigate('ParkScreen', {park: 'Animal Kingdom', destination: resort})}
+                          onPress={() => navigation.navigate('ParkScreen', {park: parkNames.ak, destination: resort})}
                           imageSource={require('../src/icons/akBanner2.png')}
                         />
       <CustomButtonEpcot
                           title=""
-                          onPress={() => navigation.navigate('ParkScreen', {park: 'Epcot', destination: resort})}
+                          onPress={() => navigation.navigate('ParkScreen', {park: parkNames.ep, destination: resort})}
                           imageSource={require('../src/icons/epcotBanner2.png')}
                         />
       <CustomButtonHS
                             title=""
-                            onPress={() => navigation.navigate('ParkScreen', {park: 'Hollywood Studios', destination: resort})}
+                            onPress={() => navigation.navigate('ParkScreen', {park: parkNames.hs, destination: resort})}
                             imageSource={require('../src/icons/hsBanner2.png')}
                           />
 

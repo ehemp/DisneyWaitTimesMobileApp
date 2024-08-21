@@ -5,6 +5,7 @@ import { View, Text, Button, Image, StyleSheet, ActivityIndicator, SafeAreaView,
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import axios from 'axios';
+import { parkNames, resortNames } from '../component/ParkIDs';
 import styles from '../styles/LocationsScreen';
 
 
@@ -33,7 +34,7 @@ const CustomButtonCaliAdventure = ({ title, onPress, imageSource }) => {
 
 
 const CaliforniaScreen = ({ navigation }) => {
-const resort = 'Disneyland Resort';
+const resort = resortNames.DLR;
   return (
   <SafeAreaView style={styles.safeView}>
 
@@ -41,13 +42,13 @@ const resort = 'Disneyland Resort';
     <View style={styles.container}>
       <CustomButtonDisneyland
                                 title=""
-                                onPress={() => navigation.navigate('ParkScreen', {park: 'Disneyland', destination: resort})}
+                                onPress={() => navigation.navigate('ParkScreen', {park: parkNames.dl, destination: resort})}
                                 imageSource={require('../src/icons/disneylandBanner1.png')}
                               />
 
       <CustomButtonCaliAdventure
                                       title=""
-                                      onPress={() => navigation.navigate('ParkScreen', {park: 'California Adventure', destination: resort})}
+                                      onPress={() => navigation.navigate('ParkScreen', {park: parkNames.ca, destination: resort})}
                                       imageSource={require('../src/icons/caliadBanner1.png')}
                                     />
 

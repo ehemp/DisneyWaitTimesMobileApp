@@ -7,6 +7,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createDrawerNavigator, DrawerContentScrollView, DrawerItemList, DrawerItem } from '@react-navigation/drawer';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import { parkNames } from '../component/ParkIDs';
 import AboutScreen from '../drawer/About';
 import SettingsScreen from '../drawer/Settings';
 import Menu from '../drawer/Menu';

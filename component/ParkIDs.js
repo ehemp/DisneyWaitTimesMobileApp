@@ -2,6 +2,36 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import axios from 'axios';
 
+export const parkNames = {
+    mk: "Magic Kingdom",
+    ak: "Animal Kingdom",
+    ep: "Epcot",
+    hs: "Hollywood Studios",
+    dl: "Disneyland",
+    ca: "California Adventure",
+};
+
+export const resortNames = {
+    WDWR: "WDW Resort",
+    DLR: "Disneyland Resort",
+};
+
+export const parkIndex = (pname) => {
+        let resortN, parkN, index = null;
+        //let parkN = null;
+        //let index = null;
+        for (let x = 0; x < Object.keys(parkIDs).length; x++) {
+            resortN = Object.keys(parkIDs)[x]
+            for (let i = 0; i < parkIDs[resortN].parks.length; i++) {
+                parkN = Object.keys(parkIDs[resortN].parks[i])
+                console.log("parks", parkIDs[resortN].parks[i][pname],  pname)
+                parkIDs[resortN].parks[i][pname] ? index = i : console.log(i)
+                if (index == i) {
+                    return index;
+                }
+            }
+        }
+      }
 
 const parkIDs = {
 
