@@ -18,8 +18,6 @@ export const resortNames = {
 
 export const parkIndex = (pname) => {
         let resortN, parkN, index = null;
-        //let parkN = null;
-        //let index = null;
         for (let x = 0; x < Object.keys(parkIDs).length; x++) {
             resortN = Object.keys(parkIDs)[x]
             for (let i = 0; i < parkIDs[resortN].parks.length; i++) {
