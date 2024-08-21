@@ -6,7 +6,7 @@
 Q-Times
 
 # Description
-This app retrieves wait times for various Disney parks with options to choose favorites, view forecasts, etc. Built for ios and Android.
+This app retrieves wait times for various Disney parks with options to choose favorites, view forecasts, etc. Built for iOS and Android.
 
 # Images
 ![Home_20240821_170700-269x599](https://github.com/user-attachments/assets/ca061dbe-ad81-4f88-aa13-117ceef533c9)
