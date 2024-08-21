@@ -21,7 +21,6 @@ export const parkIndex = (pname) => {
         for (let x = 0; x < Object.keys(parkIDs).length; x++) {
             resortN = Object.keys(parkIDs)[x]
             for (let i = 0; i < parkIDs[resortN].parks.length; i++) {
-                parkN = Object.keys(parkIDs[resortN].parks[i])
                 console.log("parks", parkIDs[resortN].parks[i][pname],  pname)
                 parkIDs[resortN].parks[i][pname] ? index = i : console.log(i)
                 if (index == i) {
