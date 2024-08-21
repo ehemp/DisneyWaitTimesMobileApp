@@ -16,8 +16,8 @@ This app retrieves wait times for various Disney parks with options to choose fa
 
 
 
-
-# React-Native Troubleshooting below
+-------------------------------------------
+# React-Native Info & Troubleshooting below
 
 If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
 
