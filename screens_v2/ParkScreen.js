@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, Button, StyleSheet, Image, ActivityIndicator, SafeAreaView, ScrollView, TouchableOpacity } from 'react-native';
 import { Modal, Portal, PaperProvider, Divider } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/Ionicons';
+import FavIcon from 'react-native-vector-icons/MaterialIcons';
 import axios from 'axios';
 import base64 from 'base-64';
 import { useModal } from '../context/ModalContext';
@@ -22,16 +23,33 @@ const ParkScreen = ({ navigation, route }) => {
     const resort = route.params.destination
     const { isLoading, attractions, initialCollapsedState } = useWaitTimes(screenName, resort);
     const [collapsedIndices, setCollapsedIndices] = useState({})
-    const { showModal, hideModal } = useModal();
+    const { showModal, hideModal, favAttr, hsSet, epcotSet, mkSet, akSet, dlSet, caSet, getIndex } = useModal();
     const infoIcon = <Icon name="information-circle-outline" size={20} color='#334155' />;
+    const favIcon = <FavIcon name="favorite" size={20} color='#334155' />;
+    const unFavIcon = <FavIcon name="favorite-outline" size={20} color='#334155' />;
+    const [ getFavIcon, setFavIcon ] = useState(false);
 
 
+    const changeIcon = (index) => {
+
+        console.log("index", index, "iterateSet", hsSet, epcotSet)
+            switch (screenName) {
+                case "Hollywood Studios": {return hsSet.has(index) ? favIcon : unFavIcon};
+                case "Epcot": {return epcotSet.has(index) ? favIcon : unFavIcon};
+                case "Magic Kingdom": {return mkSet.has(index) ? favIcon : unFavIcon};
+                case "Animal Kingdom": {return akSet.has(index) ? favIcon : unFavIcon};
+                case "Disneyland": {return dlSet.has(index) ? favIcon : unFavIcon};
+                case "California Adventure": {return caSet.has(index) ? favIcon : unFavIcon};
+                default: return unFavIcon;
+            }
+        }
 
 
     React.useEffect(() => {
             const unsubscribe = navigation.addListener('focus', () => {
               // do something
               hideModal();
+
 
             });
 
@@ -47,8 +65,6 @@ const ParkScreen = ({ navigation, route }) => {
                 </View>
               );
             }
-
-
 
 
         const expandAllButton = () => {
@@ -130,7 +146,7 @@ const ParkScreen = ({ navigation, route }) => {
 
         }
 
-          //console.log("AKSCREEN ", attractions)
+
             return (
             <SafeAreaView style={styles.container}>
                           <View style={styles.headerContainer}>
@@ -154,8 +170,9 @@ const ParkScreen = ({ navigation, route }) => {
                                     <View key={index} >
                                     <View style={styles.rideLabelsContainer}>
                                        <TouchableOpacity onPress={() => toggleCollapse(index)}>
-                                          <Divider bold="true" theme={{ colors: { primary: 'black' } }}/><Text style={styles.landsHeader}>{attraction.name}</Text>
-                                       </TouchableOpacity>
+                                          <Divider bold="true" theme={{ colors: { primary: 'black' } }}/><Text style={styles.attrHeader}>{attraction.name}</Text></TouchableOpacity>
+                                          <TouchableOpacity onPress={() => favAttr(attraction, index)}><Text>{changeIcon(index)}</Text></TouchableOpacity>
+
                                         <Collapsible collapsed={collapsedIndices[index]}>
                                         <Divider bold="true"/>
                                         <View style={styles.rideBackgroundContainer}>

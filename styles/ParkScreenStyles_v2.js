@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
   centered: {
     justifyContent: 'center',
   },
-  landsHeader: {
+  attrHeader: {
     marginTop: 0,
     fontSize: 24,
     color: '#0f172a',
