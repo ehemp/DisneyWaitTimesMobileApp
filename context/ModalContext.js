@@ -2,6 +2,7 @@ import React, { createContext, useState, useContext } from 'react';
 import DetailsCard from '../cards/DetailsCard';
 import FavIcon from 'react-native-vector-icons/MaterialIcons';
 import  parkIDs, { parkNames, resortNames, parkIndex } from '../component/ParkIDs'
+import { setItem, getItem, removeItem, getAllItems, clear } from '../utils/AsyncStorage';
 
 
 const ModalContext = createContext();
@@ -13,9 +14,11 @@ const dlSet = new Set();
 const caSet = new Set();
 const unFavIcon = <FavIcon name="favorite-outline" size={20} color='#334155' />;
 const favIcon = <FavIcon name="favorite" size={20} color='#334155' />;
+export const drawerItem = {show: false};
 
 export const ModalProvider = ({ children }) => {
   const [visible, setVisible] = useState(false);
+  const [signOutVisible, setSignOutVisible] = useState(false);
   const [attraction, setAttraction] = useState(null);
   const [ getFavIcon, setFavIcon ] = useState(false);
   const [ getIndex, setIndex ] = useState(null);
@@ -33,25 +36,42 @@ export const ModalProvider = ({ children }) => {
     }
   }
   const favAttr = async (attr, index) => {
-    setIndex(index);
-    if (switchSet(attr).has(attr.id) && switchSet(attr).has(index)) {
+    //setIndex(index);
+    /*if (switchSet(attr).has(attr.id) && switchSet(attr).has(index)) {
         switchSet(attr).delete(attr.id)
         switchSet(attr).delete(index)
         setFavIcon(false)
         console.log("delete", switchSet(attr))
+    }*/
+    //await clear();
+    //console.log(await !getItem(index))
+    //const uniqueIndex = "_" + index;
+    if (await getItem(index) === null) {
+        await setItem(index, attr.id);
+        //await setItem(index, true);
+        //console.log("set", await getItem(index));
+        console.log("set", await getAllItems());
+        //setFavIcon(true);
+        return;
     }
-    else if (!switchSet(attr).has(attr.id) && !switchSet(attr).has(index)) {
+    else if (await getItem(index) === attr.id) {
+        //console.log("remove", await getItem(index));
+        await removeItem(index);
+        //await setItem(index, false);
+        console.log("remove", await getAllItems());
+        //setFavIcon(false);
+        return;
+    }
+    /*else if (!switchSet(attr).has(attr.id) && !switchSet(attr).has(index)) {
         switchSet(attr).add(attr.id)
         switchSet(attr).add(index)
         setFavIcon(true)
         console.log("add", switchSet(attr))
-    }
+    }*/
 }
-
 
   const showModal = (attr) => {
     setAttraction(attr);
-    //console.log(attr.name)
     setVisible(true);
   };
 
@@ -60,8 +80,23 @@ export const ModalProvider = ({ children }) => {
     setAttraction(null);
   };
 
+  const showSignOut = () => {
+    drawerItem.show = false;
+    //console.log("mODAL")
+  };
+  const hideSignOut = () => {
+    drawerItem.show = true;
+  };
+  const showSignOutReg = () => {
+      drawerItem.show = false;
+      //console.log("mODAL")
+    };
+    const hideSignOutReg = () => {
+      drawerItem.show = true;
+    };
+
   return (
-    <ModalContext.Provider value={{ visible, showModal, hideModal, favAttr, hsSet, epcotSet, mkSet, akSet, dlSet, caSet, getFavIcon, getIndex, attraction }}>
+    <ModalContext.Provider value={{ showSignOutReg, hideSignOutReg, showSignOut, hideSignOut, visible, showModal, hideModal, favAttr, hsSet, epcotSet, mkSet, akSet, dlSet, caSet, getFavIcon, getIndex, attraction }}>
       {children}
     </ModalContext.Provider>
   );

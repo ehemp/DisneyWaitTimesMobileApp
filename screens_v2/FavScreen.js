@@ -13,12 +13,11 @@ import Collapsible from 'react-native-collapsible';
 import useWaitTimes from '../hooks/WaitTimesHook_v2';
 import styles from '../styles/ParkScreenStyles_v2';
 import DetailsCard from '../cards/DetailsCard';
-import { getAllItems, getItem, getAllKeys } from '../utils/AsyncStorage';
 
 
 
 
-const ParkScreen = ({ navigation, route }) => {
+const FavScreen = ({ navigation, route }) => {
     //const parkID = 8; // or use your logic to determine the park ID
     //const route = useRoute();
     const screenName = route.params.park;
@@ -27,14 +26,12 @@ const ParkScreen = ({ navigation, route }) => {
     const [collapsedIndices, setCollapsedIndices] = useState({})
     const { showModal, hideModal, favAttr, hsSet, epcotSet, mkSet, akSet, dlSet, caSet, getIndex } = useModal();
     const infoIcon = <Icon name="information-circle-outline" size={20} color='#334155' />;
-    //const favIcon = <FavIcon name="favorite" size={20} color='#334155' />;
-    //const unFavIcon = <FavIcon name="favorite-outline" size={20} color='#334155' />;
-    const favIcon = require('../src/icons/favorite_16dp_5F6368.png');
-    const unFavIcon = require('../src/icons/favorite_border_16dp_5F6368.png');
+    const favIcon = <FavIcon name="favorite" size={20} color='#334155' />;
+    const unFavIcon = <FavIcon name="favorite-outline" size={20} color='#334155' />;
     const [ getFavIcon, setFavIcon ] = useState(false);
-    //const getLocalStorage = async () => await getItem(index.toString());
 
-    /*const changeIcon = (index) => {
+
+    const changeIcon = (index) => {
         //console.log("index", index, "iterateSet", hsSet, epcotSet)
             switch (screenName) {
                 case parkNames.hs: {return hsSet.has(index) ? favIcon : unFavIcon};
@@ -45,53 +42,17 @@ const ParkScreen = ({ navigation, route }) => {
                 case parkNames.ca: {return caSet.has(index) ? favIcon : unFavIcon};
                 default: return unFavIcon;
             }
-        }*/
+        }
 
-    /*const changeIcon = async (attr, index) => {
-
-        if (changeIconAsync(attr, index) === null) {
-            console.log("if")
-            return unFavIcon;
-        }
-        else if (changeIconAsync(attr, index) != null) {
-            console.log("else if", changeIconAsync(attr, index))
-            changeIconAsync(attr, index);
-        }
-        else {
-            return unFavIcon;
-        }
-    }*/
-
-    const changeIconAsync = async (attr, index) => {
-        const getLocalStorage = await getItem(index.toString());
-        const keys = await getAllKeys();
-        const singleKey = keys.map((i) => i)
-        //console.log("ParkScreen", attr.id, index, await getItem(index.toString()))
-        for (i in singleKey) {
-            console.log(singleKey[i])
-            const checkIndex = singleKey[i]
-
-        if (await getLocalStorage === null) {
-            //console.log("ParkScreen", false, await changeIconAsync(attr, index))
-            //setFavIcon(false);
-            unFavIcon;
-        }
-        else if (await getLocalStorage === attr.id && checkIndex == index) {
-            console.log("ParkScreen", true, await getLocalStorage)
-            //setFavIcon(true);
-            favIcon;
-        }
-        else {
-            return unFavIcon;
-        }
-      }
-    }
 
     React.useEffect(() => {
             const unsubscribe = navigation.addListener('focus', () => {
               // do something
               hideModal();
+
+
             });
+
             return unsubscribe;
           }, [navigation]);
 
@@ -160,17 +121,9 @@ const ParkScreen = ({ navigation, route }) => {
                               <Image style={styles.buttonImageAccordion} source={imageSource} />
                               <Text style={styles.buttonText}>{title}</Text>
                             </TouchableOpacity>
+
                 )
             }
-
-            const CustomFavIconButton = ({ title, onPress, imageSource }) => {
-              return (
-                 <TouchableOpacity style={styles.button} onPress={onPress}>
-                           <Image style={styles.buttonImageAccordion} source={imageSource} />
-                           <Text style={styles.buttonText}>{title}</Text>
-                         </TouchableOpacity>
-             );
-            };
 
             const CustomButton = ({ title, onPress, imageSource }) => {
               return (
@@ -218,13 +171,7 @@ const ParkScreen = ({ navigation, route }) => {
                                     <View style={styles.rideLabelsContainer}>
                                        <TouchableOpacity onPress={() => toggleCollapse(index)}>
                                           <Divider bold="true" theme={{ colors: { primary: 'black' } }}/><Text style={styles.attrHeader}>{attraction.name}</Text></TouchableOpacity>
-                                          <TouchableOpacity>
-                                            <CustomFavIconButton
-                                              title=""
-                                              onPress={() => favAttr(attraction, index.toString())}
-                                              imageSource={changeIconAsync(attraction, index)}
-                                               />
-                                          </TouchableOpacity>
+                                          <TouchableOpacity onPress={() => favAttr(attraction, index)}><Text>{changeIcon(index)}</Text></TouchableOpacity>
 
                                         <Collapsible collapsed={collapsedIndices[index]}>
                                         <Divider bold="true"/>
@@ -256,4 +203,4 @@ const ParkScreen = ({ navigation, route }) => {
           };
 
 
-export default ParkScreen;
+export default FavScreen;

@@ -55,3 +55,6 @@ Android Release: 1. cd android 2. ./gradlew assembleRelease
         //['react-native-reanimated/plugin', { loose: true }], had to add this to babel.config.js - plugins
 
         //Radio button for list or tab view of parks
+
+        //<TouchableOpacity onPress={() => favAttr(attraction, `${index}`)}><Text>{changeIconAsync(attraction, index) != null ? changeIconAsync(attraction, index) : unFavIcon}</Text></TouchableOpacity>
+        //onPress={() => favAttr(attraction, `${index}`)}

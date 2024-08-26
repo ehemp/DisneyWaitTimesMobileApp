@@ -28,6 +28,15 @@ const CustomButtonFloridaScreen = ({ title, onPress, imageSource }) => {
   );
 };
 
+const CustomButtonFavoriteScreen = ({ title, onPress, imageSource }) => {
+  return (
+    <TouchableOpacity style={styles.button} onPress={onPress}>
+        <View style={styles.buttonBanners} >
+          <Image style={styles.buttonImage} source={imageSource} />
+          </View>
+        </TouchableOpacity>
+  );
+};
 
 
 
@@ -59,6 +68,12 @@ const HomeScreen = ({ navigation }) => {
                                         title="Fl"
                                         onPress={() => navigation.navigate('Florida Parks')}
                                         imageSource={require('../src/icons/floridaParksBanner1.png')}
+                                      />
+
+        <CustomButtonFavoriteScreen
+                                        title="Fav"
+                                        onPress={() => navigation.navigate('Favorites')}
+                                        imageSource={require('../src/icons/tempFavoriteBanner.png')}
                                       />
         </View>
       </ScrollView>

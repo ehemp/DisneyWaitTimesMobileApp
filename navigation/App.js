@@ -12,41 +12,48 @@ import StackNav from '../navigation/StackNavigation';
 import AboutScreen from '../drawer/About';
 import SettingsScreen from '../drawer/Settings';
 import Menu from '../drawer/Menu';
-import EpcotScreen from '../screens/EpcotScreen';
-import MKScreen from '../screens/MKScreen';
-import AKScreen from '../screens/AKScreen';
-import HStudiosScreen from '../screens/HStudiosScreen';
-import DisneylandScreen from '../screens/DisneylandScreen';
-import CaliAdventureScreen from '../screens/CaliAdventureScreen';
+import UserSignInScreen from '../screens_v2/UserSignInScreen';
 import CaliforniaScreen from '../screens/CaliforniaScreen';
 import FloridaScreen from '../screens/FloridaScreen';
 import HomeScreen from '../screens/HomeScreen';
 import DetailsCard from '../cards/DetailsCard';
 import { version } from '../package.json';
+import { drawerItem } from '../context/ModalContext';
+import UserRegisterScreen from '../screens_v2/UserRegisterScreen';
 
 
 
 const Drawer = createDrawerNavigator();
 
 function CustomDrawerContent(props) {
+
+  console.log("DRAWER", drawerItem.show)
   return (
     <DrawerContentScrollView {...props}>
       <DrawerItemList {...props} />
       <DrawerItem
           label="Home"
+          display={drawerItem.show ? 'none' : 'flex'}
           onPress={() => props.navigation.navigate('Menu', { screen: 'Home' })}
         />
         <Divider />
         <DrawerItem
                   label="About"
+                  display={drawerItem.show ? 'none' : 'flex'}
                   onPress={() => props.navigation.navigate('About')}
                 />
                 <Divider />
       <DrawerItem
                 label="Settings"
+                display={drawerItem.show ? 'none' : 'flex'}
                 onPress={() => props.navigation.navigate('Settings')}
               />
                <Divider />
+      <DrawerItem
+              label="Sign Out"
+              display={drawerItem.show ? 'none' : 'flex'}
+              onPress={() => props.navigation.navigate('Sign In')}
+            />
       <DrawerItem
         label="Close"
         onPress={() => props.navigation.closeDrawer()}
@@ -76,6 +83,7 @@ const App = () => {
         <Drawer.Screen name="Menu" component={StackNav} options={{ drawerItemStyle: {height: 0}}} />
         <Drawer.Screen name="About" component={AboutScreen} options={{ drawerItemStyle: {height: 0}}} />
         <Drawer.Screen name="Settings" component={SettingsScreen} options={{ drawerItemStyle: {height: 0}}} />
+        <Drawer.Screen name="Sign Out" component={UserSignInScreen} options={{ drawerItemStyle: {height: 0}}} />
 
       {/* Add more Drawer Screens as needed */}
     </Drawer.Navigator>

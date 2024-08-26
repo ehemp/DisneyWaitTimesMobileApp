@@ -22,6 +22,9 @@ import FloridaScreen from '../screens/FloridaScreen';
 import HomeScreen from '../screens/HomeScreen';
 import DetailsCard from '../cards/DetailsCard';
 import ParkScreen from '../screens_v2/ParkScreen';
+import FavScreen from '../screens_v2/FavScreen';
+import UserRegisterScreen from '../screens_v2/UserRegisterScreen';
+import UserSignInScreen from '../screens_v2/UserSignInScreen';
 
 
 
@@ -33,10 +36,13 @@ const StackNav = () => {
                  return (
                  <ModalProvider>
 
-                     <Stack.Navigator initialRouteName="Home" screenOptions={{ headerShown: false }}>
+                     <Stack.Navigator initialRouteName="Sign In" screenOptions={{ headerShown: false }}>
+                       <Stack.Screen name="Register" component={UserRegisterScreen} />
+                       <Stack.Screen name="Sign In" component={UserSignInScreen} />
                        <Stack.Screen name="Home" component={HomeScreen} />
                        <Stack.Screen name='Florida Parks' component={FloridaScreen} />
                        <Stack.Screen name="California Parks" component={CaliforniaScreen} />
+                       <Stack.Screen name="Favorites" component={FavScreen} />
                        <Stack.Screen name="Details" component={DetailsCard} />
                        <Stack.Screen name="ParkScreen" component={ParkScreen} />
                      </Stack.Navigator>
