@@ -11,7 +11,7 @@ const port = process.env.PORT;
 
 // Middleware
 /*app.use(cors({
-  origin: 'http://10.0.2.2:8081', // Replace with your origin
+  origin: 'http://10.0.2.2:8081',
   credentials: true,
 }));*/
 app.use(cors());
@@ -29,11 +29,11 @@ app.use(bodyParser.json());
 
 // PostgreSQL connection pool
 const pool = new Pool({
-  user: process.env.PGADMIN,       // Your PostgreSQL username
+  user: process.env.PGADMIN,     
   host: 'localhost',
-  database: process.env.USERDB,         // Database name
-  password: process.env.DBPW,   // Your PostgreSQL password
-  port: process.env.PGPORT              // Default PostgreSQL port
+  database: process.env.USERDB,        
+  password: process.env.DBPW,   
+  port: process.env.PGPORT              
 });
 
 // POST: Register new user
