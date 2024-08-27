@@ -3,8 +3,8 @@
 import React from 'react';
 import { View, StyleSheet, Button, Text } from 'react-native';
 import { ModalProvider } from '../context/ModalContext';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { NavigationContainer, useFocusEffect  } from '@react-navigation/native';
+import { createNativeStackNavigator} from '@react-navigation/native-stack';
 import { createDrawerNavigator, DrawerContentScrollView, DrawerItemList, DrawerItem } from '@react-navigation/drawer';
 import { Divider } from 'react-native-paper';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
@@ -18,7 +18,7 @@ import FloridaScreen from '../screens/FloridaScreen';
 import HomeScreen from '../screens/HomeScreen';
 import DetailsCard from '../cards/DetailsCard';
 import { version } from '../package.json';
-import { drawerItem } from '../context/ModalContext';
+import { drawerItem, drawerItemReg, useModal } from '../context/ModalContext';
 import UserRegisterScreen from '../screens_v2/UserRegisterScreen';
 
 
@@ -27,7 +27,7 @@ const Drawer = createDrawerNavigator();
 
 function CustomDrawerContent(props) {
 
-  console.log("DRAWER", drawerItem.show)
+
   return (
     <DrawerContentScrollView {...props}>
       <DrawerItemList {...props} />
@@ -55,6 +55,11 @@ function CustomDrawerContent(props) {
               onPress={() => props.navigation.navigate('Sign In')}
             />
       <DrawerItem
+                label="Sign In"
+                display={drawerItemReg.show ? 'flex' : 'none'}
+                onPress={() => props.navigation.navigate('Sign In')}
+              />
+      <DrawerItem
         label="Close"
         onPress={() => props.navigation.closeDrawer()}
       />
@@ -64,12 +69,14 @@ function CustomDrawerContent(props) {
 }
 
 
+const App = ({ navigation }) => {
 
-const App = () => {
+
 
   return (
 
 <NavigationContainer>
+    <ModalProvider>
     <Drawer.Navigator
       initialRouteName = 'Menu'
       drawerContent={(props) => <CustomDrawerContent {...props} />}
@@ -84,9 +91,11 @@ const App = () => {
         <Drawer.Screen name="About" component={AboutScreen} options={{ drawerItemStyle: {height: 0}}} />
         <Drawer.Screen name="Settings" component={SettingsScreen} options={{ drawerItemStyle: {height: 0}}} />
         <Drawer.Screen name="Sign Out" component={UserSignInScreen} options={{ drawerItemStyle: {height: 0}}} />
+        <Drawer.Screen name="Sign In" component={UserSignInScreen} options={{ drawerItemStyle: {height: 0}}} />
 
       {/* Add more Drawer Screens as needed */}
     </Drawer.Navigator>
+    </ModalProvider>
 </NavigationContainer>
 
   );

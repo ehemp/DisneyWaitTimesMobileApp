@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, TextInput, Button, Text } from 'react-native';
 import { signInUser, getUsers } from '../api/userAPI';  // Import your API functions
 import { useFocusEffect } from '@react-navigation/native';
-import { useModal } from '../context/ModalContext';
+import { useModal, showSignOut, hideSignOut } from '../context/ModalContext';
 import { signOutObj } from '../context/ModalContext';
 
 
@@ -20,7 +20,7 @@ const UserSignInScreen = ({ navigation }) => {
           // Do something when the screen is focused
           return () => {
             //alert('Screen was unfocused');
-            showSignOut();
+            //showSignOut();
             setEmptyText('');
             setMessage(emptyText);
             setUsername('');

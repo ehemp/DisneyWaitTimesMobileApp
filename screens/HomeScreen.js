@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, Button, Image, StyleSheet, ActivityIndicator, SafeAreaView, ScrollView, TouchableOpacity } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, useFocusEffect } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import axios from 'axios';
 import styles from '../styles/LocationsScreen';
 import {changeComponentHook} from '../hooks/CheckComponent';
+import { useModal } from '../context/ModalContext';
 
 
 
@@ -41,7 +42,17 @@ const CustomButtonFavoriteScreen = ({ title, onPress, imageSource }) => {
 
 
 const HomeScreen = ({ navigation }) => {
-
+    const { showSignOut } = useModal();
+    useFocusEffect(
+            React.useCallback(() => {
+              showSignOut();
+              // Do something when the screen is focused
+              return () => {
+                // Do something when the screen is unfocused
+                // Useful for cleanup functions
+              };
+            }, [])
+          );
     /*useEffect(() => {
                 const unsubscribe = navigation.addListener('focus', () => {
                   // do something

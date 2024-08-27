@@ -10,19 +10,19 @@ const UserRegisterScreen = ({ navigation }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
-  const {showSignOutReg, hideSignOutReg} = useModal();
+  const {showSignInReg, hideSignInReg} = useModal();
   const uniqueError = {code: '23505'};
   const emptyError = {code: '23514'};
-
+//TODO: consolidate show/hide signin/out
     useFocusEffect(
             React.useCallback(() => {
               //alert('Screen was focused');
-              hideSignOutReg();
+              showSignInReg();
               //console.log("REG Focus", drawerItem.show)
               // Do something when the screen is focused
               return () => {
                 //alert('Screen was unfocused');
-                showSignOutReg();
+                hideSignInReg();
                 //console.log("REG Unfocus", drawerItem.show)
                 setMessage('');
                 setUsername('');

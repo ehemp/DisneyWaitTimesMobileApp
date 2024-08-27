@@ -34,8 +34,6 @@ const Stack = createNativeStackNavigator();
 const StackNav = () => {
 
                  return (
-                 <ModalProvider>
-
                      <Stack.Navigator initialRouteName="Sign In" screenOptions={{ headerShown: false }}>
                        <Stack.Screen name="Register" component={UserRegisterScreen} />
                        <Stack.Screen name="Sign In" component={UserSignInScreen} />
@@ -47,8 +45,6 @@ const StackNav = () => {
                        <Stack.Screen name="ParkScreen" component={ParkScreen} />
                      </Stack.Navigator>
 
-
-                 </ModalProvider>
                  );
                };
 

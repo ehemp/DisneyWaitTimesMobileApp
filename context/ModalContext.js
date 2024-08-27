@@ -15,6 +15,8 @@ const caSet = new Set();
 const unFavIcon = <FavIcon name="favorite-outline" size={20} color='#334155' />;
 const favIcon = <FavIcon name="favorite" size={20} color='#334155' />;
 export const drawerItem = {show: false};
+export const drawerItemReg = {show: false};
+
 
 export const ModalProvider = ({ children }) => {
   const [visible, setVisible] = useState(false);
@@ -82,21 +84,21 @@ export const ModalProvider = ({ children }) => {
 
   const showSignOut = () => {
     drawerItem.show = false;
-    //console.log("mODAL")
+
   };
   const hideSignOut = () => {
     drawerItem.show = true;
   };
-  const showSignOutReg = () => {
-      drawerItem.show = false;
-      //console.log("mODAL")
-    };
-    const hideSignOutReg = () => {
+  const showSignInReg = () => {
+      drawerItemReg.show = true;
       drawerItem.show = true;
+    };
+    const hideSignInReg = () => {
+      drawerItemReg.show = false;
     };
 
   return (
-    <ModalContext.Provider value={{ showSignOutReg, hideSignOutReg, showSignOut, hideSignOut, visible, showModal, hideModal, favAttr, hsSet, epcotSet, mkSet, akSet, dlSet, caSet, getFavIcon, getIndex, attraction }}>
+    <ModalContext.Provider value={{ showSignInReg, hideSignInReg, showSignOut, hideSignOut, visible, showModal, hideModal, favAttr, hsSet, epcotSet, mkSet, akSet, dlSet, caSet, getFavIcon, getIndex, attraction }}>
       {children}
     </ModalContext.Provider>
   );
